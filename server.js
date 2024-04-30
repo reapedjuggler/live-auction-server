@@ -16,7 +16,13 @@ const upload = multer({ dest: 'uploads/' });
 // Body parser
 app.use(express.json());
 
-// CORS
+// app.all('/*', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
+
+// // CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
@@ -42,7 +48,7 @@ app.use('/auction', require('./routes/auction'));
 app.use('/upload', require('./routes/uploads'));
 
 // Socket.io setup
-const PORT = process.env.PORT || 5000;
+const PORT = 8000;
 io.on('connection', (socket) => {
   // console.log('### Socket IO client connected');
   socket.on('disconnect', (reason) => {

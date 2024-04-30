@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   }
   // Verify token
   try {
-    const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const verifiedToken = jwt.verify(token, "secret")
     req.user = verifiedToken.user;
     next();
   } catch (err) {
